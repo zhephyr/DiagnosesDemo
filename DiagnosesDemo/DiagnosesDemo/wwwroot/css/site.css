@@ -1,37 +1,284 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/*#region CSS Reset */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 0.875em;
+	font-family: avenir;
+	vertical-align: baseline;
+	background: transparent;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+	line-height: 1;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+	nav ul {
+		list-style: none;
+	}
+
+blockquote, q {
+	quotes: none;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+
+a {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+/* change colours to suit your needs */
+ins {
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
 }
+
+/* change colours to suit your needs */
+mark {
+	background-color: #ff9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #cccccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input, select {
+	vertical-align: middle;
+}
+/*#endregion CSS Reset */
+/*#region Font CSS */
+/*#region Font-Family CSS */
+@font-face {
+	font-family: 'avenir';
+	src: url('../fonts/Avenir.ttc') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 35 light oblique';
+	src: url('../fonts/avenir lt 35 light oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 35 light';
+	src: url('../fonts/avenir lt 35 light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 45 book oblique';
+	src: url('../fonts/avenir lt 45 book oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 45 book';
+	src: url('../fonts/avenir lt 45 book.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 55 oblique';
+	src: url('../fonts/avenir lt 55 oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 55 roman';
+	src: url('../fonts/avenir lt 55 roman.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 65 medium oblique';
+	src: url('../fonts/avenir lt 65 medium oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 65 medium';
+	src: url('../fonts/avenir lt 65 medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 85 heavy';
+	src: url('../fonts/avenir lt 85 heavy.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 86 heavy oblique';
+	src: url('../fonts/avenir lt 86 heavy oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 95 black oblique';
+	src: url('../fonts/avenir lt 95 black oblique.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'avenir lt 95 black';
+	src: url('../fonts/avenir lt 95 black.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'neutratext-bold';
+	src: url('../fonts/neutratext-bold.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-boldalt';
+	src: url('../fonts/neutratext-boldalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-bolditalic';
+	src: url('../fonts/neutratext-bolditalic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-bolditalicalt';
+	src: url('../fonts/neutratext-bolditalicalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-book';
+	src: url('../fonts/neutratext-book.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-bookalt';
+	src: url('../fonts/neutratext-bookalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-bookitalic';
+	src: url('../fonts/neutratext-bookitalic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-bookitalicalt';
+	src: url('../fonts/neutratext-bookitalicalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-demi';
+	src: url('../fonts/neutratext-demi.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-demialt';
+	src: url('../fonts/neutratext-demialt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-demiitalic';
+	src: url('../fonts/neutratext-demiitalic.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-demiitalicalt';
+	src: url('../fonts/neutratext-demiitalicalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-light';
+	src: url('../fonts/neutratext-light.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-lightalt';
+	src: url('../fonts/neutratext-lightalt.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-lightia';
+	src: url('../fonts/neutratext-lightia.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'neutratext-lightitalic';
+	src: url('../fonts/neutratext-lightitalic.otf') format('opentype');
+}
+/*#endregion Font-Family CSS */
+h1, h2, h3, .title, .subhead, .caption {
+	font-family: neutratext;
+}
+
+h1 {
+	font-size: 2.8125em;
+}
+
+h2 {
+	font-size: 2.125em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+.title {
+	font-size: 1.25em;
+}
+
+.subhead {
+	font-size: 1em;
+}
+
+.caption {
+	font-size: .75em;
+}
+/*#endregion Font CSS */
+/*#region Global CSS */
+.container {
+	width: 100%;
+	padding: .05%;
+}
+
+.header {
+	width: 100%;
+	background-color: #0096d6;
+	padding: 25% 0;
+}
+/*#endregion Global CSS*/
