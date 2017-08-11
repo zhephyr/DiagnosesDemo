@@ -1,21 +1,87 @@
 ﻿@{
 	ViewData["Title"] = "Demo";
 }
+<meta name="viewport" content="width=device-width">
 
 <script src="~/lib/angular/angular.min.js"></script>
+<script src="~/lib/angular-animate/angular-animate.min.js"></script>
 <script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="~/js/pickerApp.js"></script>
+
 <link href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
 <link href="~/lib/grd/grd.css" rel="stylesheet" />
-<link href="~/css/site.css" rel="stylesheet" />
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<style type="text/css">
+	#category {
+		margin-left: 12.5%;
+		width: 75%;
+		border: 1px solid #909297;
+		border-radius: 4px;
+	}
 
-<html>
-<body class="container" ng-app="pickerApp">
+	#choice {
+		margin-right: 8.33%
+	}
+</style>
+
+<html ng-app="pickerApp">
+<body class="container" ng-controller="pickerCtrl">
 	<div class="header">
 		<h1 style="padding-left:8.33%">Start My Search</h1>
 		<uib-accordion>
-			<div uib-accordion-group class=""></div>
+			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.main_cat != '') ? product.main_cat : placehold.main_cat}}" is-open="head_status.first">
+				<div class="Grid -left">
+					<button id="choice" type="button" class="btn btn-primary Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'Rehab'">Rehabilitation</button>
+					<button id="choice" type="button" class="btn btn-primary Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'LTC'">Long Term Care</button>
+				</div>
+			</div>
+			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.prod_type != '') ? product.prod_type: placehold.prod_type}}" is-open="head_status.second" ng-hide="product.main_cat == ''">
+				<div class="Grid -left">
+					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Cushions'">Cushion</button>
+					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Backs'">Backs</button>
+					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Accessories'">Accessories</button>
+				</div>
+			</div>
+			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.diagnosis != '') ? product.diagnosis: placehold.diagnosis}}" is-open="head_status.third" ng-hide="product.prod_type == ''">
+				<div id="diagnoses" class="Grid -left" style="flex-wrap: nowrap;">
+					<div class="Cell -2f12">
+						<p class="subhead">Diagnosed Condition</p>
+						<input type="text" class="form-control" disabled />
+					</div>
+					<div class="Cell -6of12">
+						<p class="subhead">Which Medicare Code do you qualify for?</p>
+						<div class="select-group">
+							<select size="4" class="form-control">
+								<option>Group 1</option>
+							</select>
+							<select size="4" class="form-control">
+								<option>Group 2</option>
+							</select>
+							<select size="4" class="form-control">
+								<option>Group 3</option>
+							</select>
+							<select size="4" class="form-control">
+								<option>Group 4</option>
+							</select>
+						</div>
+					</div>
+					<div class="Cell -2of12">
+						<p class="subhead">Back Size?</p>
+						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Pediatric</button>
+						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Bariatric</button>
+						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Adult Standard</button>
+					</div>
+					<div class="Cell -2of12" style="text-align: center;">
+						<h1 style="width: 100%; color: #b40020; margin-top: .33em">24</h1>
+						<button class="btn btn-danger">Products Found</button>
+					</div>
+				</div>
+			</div>
 		</uib-accordion>
+		<div class="Grid -right" style="height: 2.167vh">
+			<button class="btn btn-link btn-lg Cell -1of12" style="color: #ffffff;">Reset</button>
+		</div>
 	</div>
 </body>
 </html>

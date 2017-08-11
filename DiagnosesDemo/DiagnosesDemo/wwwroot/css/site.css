@@ -16,7 +16,7 @@ time, mark, audio, video {
 	border: 0;
 	outline: 0;
 	font-size: 0.875em;
-	font-family: avenir;
+	font-family: 'avenir' !important;
 	vertical-align: baseline;
 	background: transparent;
 }
@@ -242,37 +242,50 @@ input, select {
 	src: url('../fonts/neutratext-lightitalic.otf') format('opentype');
 }
 /*#endregion Font-Family CSS */
-h1, h2, h3, .title, .subhead, .caption {
-	font-family: neutratext;
+h1, h2, h3, .title, .subhead,
+h1 *, h2 *, h3 *, .title *, .subhead * {
+	font-family: neutratext-demi !important;
+}
+
+h4, h5, h6, .caption,
+h4 *, h5 *, h6 *, .caption * {
+	font-family: neutratext-light !important;
 }
 
 h1 {
-	font-size: 2.8125em;
+	font-size: 5vh !important;
+	margin-bottom: 0.67em;
 }
 
 h2 {
-	font-size: 2.125em;
+	font-size: 3.75vh !important;
+	margin-bottom: 0.83em;
 }
 
 h3 {
-	font-size: 1.5em;
+	font-size: 2.75vh !important;
+	margin-bottom: 1em;
 }
 
 .title {
-	font-size: 1.25em;
+	font-size: 2.125vh !important;
+	margin-bottom: .2em;
 }
 
 .subhead {
-	font-size: 1em;
+	font-size: 1.75vh !important;
+	margin-bottom: .25em
 }
 
 .caption {
-	font-size: .75em;
+	font-size: 1.125em !important;
+	margin-top: .5em;
 }
 /*#endregion Font CSS */
 /*#region Global CSS */
 .container {
 	width: 100%;
+	max-width: 80vw;
 	padding: .05%;
 }
 
@@ -280,6 +293,98 @@ h3 {
 	width: 100%;
 	background-color: #0096d6;
 	color: #ffffff;
-	padding: 16.67% 0;
+	padding: 4.167vh 0 2.167vh;
+	margin-top: 4.167%;
 }
+
+.panel-heading {
+	background-color: #6f7177 !important;
+}
+
+.panel-title {
+	color: #ffffff;
+	font-size: 2.75vh;
+	font-family: 'neutratext-demi' !important;
+}
+
+.panel-body {
+	color: #56565c;
+}
+
+	.panel-body > .Grid > div.Cell {
+		padding: 0 0.5em;
+	}
+
+		.panel-body > .Grid > div.Cell:first-child {
+			padding: 0 0.5em 0 0;
+		}
+
+		.panel-body > .Grid > div.Cell:last-child {
+			padding: 0 0 0 0.5em;
+		}
+
+.select-group {
+	display: flex !important;
+	flex-direction: row !important;
+	-webkit-box-orient: horizontal !important;
+	-webkit-box-direction: normal !important;
+}
+
+	.select-group > select {
+		margin: 0 0.5em;
+	}
+
+		.select-group > select:first-child {
+			margin: 0 0.5em 0 0;
+		}
+
+		.select-group > select:last-child {
+			margin: 0 0 0 0.5em;
+		}
 /*#endregion Global CSS*/
+/*#region Mobile CSS */
+@media only screen and (max-width: 768px) {
+	.Grid {
+		flex-direction: column;
+	}
+
+	.Cell {
+		width: 100% !important;
+	}
+
+	.panel-body {
+		color: #56565c;
+	}
+
+		.panel-body > .Grid > div.Cell {
+			padding: 0.5em 0;
+		}
+
+			.panel-body > .Grid > div.Cell:first-child {
+				padding: 0 0 0.5em 0;
+			}
+
+			.panel-body > .Grid > div.Cell:last-child {
+				padding: 0.5em 0 0 0;
+			}
+
+	.select-group {
+		display: flex !important;
+		flex-direction: column !important;
+		-webkit-box-orient: vertical !important;
+		-webkit-box-direction: normal !important;
+	}
+
+		.select-group > select {
+			margin: 0.5em 0;
+		}
+
+			.select-group > select:first-child {
+				margin: 0 0 0.5em 0;
+			}
+
+			.select-group > select:last-child {
+				margin: 0.5em 0 0 0;
+			}
+}
+/*#endregion Mobile CSS */
