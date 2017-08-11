@@ -4,6 +4,8 @@
   "dependencies": {
     "angular": "v1.6.6-build.5445+sha.56ac2a7",
     "angular-bootstrap": "v1.1.0",
-    "grd": "v1.3.0"
+    "grd": "v1.3.0",
+    "angular-animate": "v1.6.6-build.5445+sha.56ac2a7",
+    "bootstrap": "v3.3.7"
   }
 }
