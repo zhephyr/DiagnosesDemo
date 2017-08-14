@@ -16,38 +16,55 @@
 	#category {
 		margin-left: 12.5%;
 		width: 75%;
-		border: 1px solid #909297;
-		border-radius: 4px;
+		background-color: transparent;
+		border: none;
 	}
+
+		#category *:not(.btn), #category *:not(input), #category *:not(select) {
+			border: none;
+		}
 
 	#choice {
 		margin-right: 8.33%
+	}
+
+	#filters {
+		color: #0096d6;
+	}
+
+	.filter {
+		border-top: 1px solid #0096d6;
+		padding: 0.67em 0;
+	}
+
+	.filter ul {
+		list-style-type: none;
 	}
 </style>
 
 <html ng-app="pickerApp">
 <body class="container" ng-controller="pickerCtrl">
-	<div class="header">
+	<div id="header" class="header">
 		<h1 style="padding-left:8.33%">Start My Search</h1>
 		<uib-accordion>
 			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.main_cat != '') ? product.main_cat : placehold.main_cat}}" is-open="head_status.first">
 				<div class="Grid -left">
-					<button id="choice" type="button" class="btn btn-primary Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'Rehab'">Rehabilitation</button>
-					<button id="choice" type="button" class="btn btn-primary Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'LTC'">Long Term Care</button>
+					<button id="choice" type="button" class="btn btn-dark Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'Rehab'">Rehabilitation</button>
+					<button id="choice" type="button" class="btn btn-dark Cell -4of12" ng-model="product.main_cat" uib-btn-radio="'LTC'">Long Term Care</button>
 				</div>
 			</div>
 			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.prod_type != '') ? product.prod_type: placehold.prod_type}}" is-open="head_status.second" ng-hide="product.main_cat == ''">
 				<div class="Grid -left">
-					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Cushions'">Cushion</button>
-					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Backs'">Backs</button>
-					<button id="choice" type="button" class="btn btn-primary Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Accessories'">Accessories</button>
+					<button id="choice" type="button" class="btn btn-dark Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Cushions'">Cushion</button>
+					<button id="choice" type="button" class="btn btn-dark Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Backs'">Backs</button>
+					<button id="choice" type="button" class="btn btn-dark Cell -3of12" ng-model="product.prod_type" uib-btn-radio="'Accessories'">Accessories</button>
 				</div>
 			</div>
 			<div id="category" uib-accordion-group class="panel-default" heading="{{(product.diagnosis != '') ? product.diagnosis: placehold.diagnosis}}" is-open="head_status.third" ng-hide="product.prod_type == ''">
 				<div id="diagnoses" class="Grid -left" style="flex-wrap: nowrap;">
 					<div class="Cell -2f12">
 						<p class="subhead">Diagnosed Condition</p>
-						<input type="text" class="form-control" disabled />
+						<input type="text" class="form-control" />
 					</div>
 					<div class="Cell -6of12">
 						<p class="subhead">Which Medicare Code do you qualify for?</p>
@@ -68,9 +85,9 @@
 					</div>
 					<div class="Cell -2of12">
 						<p class="subhead">Back Size?</p>
-						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Pediatric</button>
-						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Bariatric</button>
-						<button class="btn btn-primary" style="width: 100%; margin: 0.25em;">Adult Standard</button>
+						<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Pediatric</button>
+						<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Bariatric</button>
+						<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Adult Standard</button>
 					</div>
 					<div class="Cell -2of12" style="text-align: center;">
 						<h1 style="width: 100%; color: #b40020; margin-top: .33em">24</h1>
@@ -81,6 +98,71 @@
 		</uib-accordion>
 		<div class="Grid -right" style="height: 2.167vh">
 			<button class="btn btn-link btn-lg Cell -1of12" style="color: #ffffff;">Reset</button>
+		</div>
+	</div>
+	<div id="content" class="content Grid">
+		<div id="filters" class="Cell -2of12">
+			<p class="title">Refine Your Search</p>
+			<p style="padding-bottom: 0.67em;">83 Total Results</p>
+			<div class="filter">
+				<p class="title">Medicare Code:</p>
+				<ul>
+					<li>
+						<input id="code" type="checkbox" ng-model="hcpcs['code']" />
+						<label for="code"><span></span>E2624 / E2625</label>
+					</li>
+				</ul>
+			</div>
+			<div class="filter">
+				<p class="title">Padding Type:</p>
+				<ul>
+					<li>
+						<input id="air" type="checkbox" ng-model="medium.air"/>
+						<label for="air"><span></span>Air</label>
+					</li>
+					<li>
+						<input id="foam" type="checkbox" ng-model="medium.foam" />
+						<label for="foam"><span></span>Foam</label>
+					</li>
+					<li>
+						<input id="foam_gel" type="checkbox" ng-model="medium.foam_gel" />
+						<label for="foam_gel"><span></span>Foam / Gel</label>
+					</li>
+				</ul>
+			</div>
+			<div class="filter">
+				<p class="title">Shape:</p>
+				<ul>
+					<li>
+						<input id="linear" type="checkbox" ng-model="shape.linear" />
+						<label for="linear"><span></span>Linear</label>
+					</li>
+					<li>
+						<input id="contour" type="checkbox" ng-model="shape.contour" />
+						<label for="contour"><span></span>Contoured</label>
+					</li>
+				</ul>
+			</div>
+			<div class="filter">
+				<p class="title">Cover:</p>
+				<ul>
+					<li>
+						<input id="fluid_res" type="checkbox" ng-model="cover.fluid_res" />
+						<label for="fluid_res"><span></span>Air</label>
+					</li>
+					<li>
+						<input id="breath" type="checkbox" ng-model="medium.breath" />
+						<label for="breath"><span></span>Foam</label>
+					</li>
+					<li>
+						<input id="anti_shear" type="checkbox" ng-model="medium.anti_shear" />
+						<label for="anti_shear"><span></span>Foam / Gel</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="products" class="Cell -10of12">
+
 		</div>
 	</div>
 </body>
