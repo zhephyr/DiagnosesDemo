@@ -1,164 +1,426 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+	<TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+	<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
-    <Compile Remove="wwwroot\lib\jquery-validation\**" />
-    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
-    <Content Remove="wwwroot\lib\jquery-validation\**" />
-    <EmbeddedResource Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
-    <EmbeddedResource Remove="wwwroot\lib\jquery-validation\**" />
-    <None Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
-    <None Remove="wwwroot\lib\jquery-validation\**" />
+	<Compile Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+	<Compile Remove="wwwroot\lib\jquery-validation\**" />
+	<Content Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+	<Content Remove="wwwroot\lib\jquery-validation\**" />
+	<EmbeddedResource Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+	<EmbeddedResource Remove="wwwroot\lib\jquery-validation\**" />
+	<None Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+	<None Remove="wwwroot\lib\jquery-validation\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\fonts\Avenir LT 35 Light Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir LT 35 Light.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir LT 45 Book Oblique.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 45 Book.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 55 Oblique.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 55 Roman.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir LT 65 Medium Oblique.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 65 Medium.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir LT 85 Heavy.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 86 Heavy Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir LT 95 Black Oblique.ttf" />
-    <Content Include="wwwroot\fonts\Avenir LT 95 Black.ttf" />
-    <Content Include="wwwroot\fonts\Avenir Next Condensed.ttc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Avenir Next.ttc" />
-    <Content Include="wwwroot\fonts\Avenir.ttc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\Index.cshtml" />
-    <Content Include="wwwroot\fonts\NeutraText-Bold.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-BoldAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-BoldItalic.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-BoldItalicAlt.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-Book.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-BookAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-BookItalic.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-BookItalicAlt.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-Demi.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-DemiAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-DemiItalic.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-DemiItalicAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-Light.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-LightAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\fonts\NeutraText-LightIA.otf" />
-    <Content Include="wwwroot\fonts\NeutraText-LightItalic.otf" />
-    <Content Include="wwwroot\js\pickerApp.js" />
+	<Content Include="wwwroot\fonts\Avenir LT 35 Light Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir LT 35 Light.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir LT 45 Book Oblique.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 45 Book.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 55 Oblique.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 55 Roman.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir LT 65 Medium Oblique.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 65 Medium.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir LT 85 Heavy.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 86 Heavy Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir LT 95 Black Oblique.ttf" />
+	<Content Include="wwwroot\fonts\Avenir LT 95 Black.ttf" />
+	<Content Include="wwwroot\fonts\Avenir Next Condensed.ttc">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Avenir Next.ttc" />
+	<Content Include="wwwroot\fonts\Avenir.ttc">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\Index.cshtml" />
+	<Content Include="wwwroot\fonts\NeutraText-Bold.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-BoldAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-BoldItalic.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-BoldItalicAlt.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-Book.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-BookAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-BookItalic.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-BookItalicAlt.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-Demi.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-DemiAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-DemiItalic.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-DemiItalicAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-Light.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-LightAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\fonts\NeutraText-LightIA.otf" />
+	<Content Include="wwwroot\fonts\NeutraText-LightItalic.otf" />
+	<Content Include="wwwroot\images\main_img\2013-dealer-catalog_main.jpg" />
+	<Content Include="wwwroot\images\main_img\abduction-pillow_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-contour_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-deep-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-deep_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-lts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-ts-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back-ts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-contour-back-deep_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-contour-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-contour-deep-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-contour-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-back-price_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-cushion-with-moldable-insert_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-lts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-noati_features.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-ts-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace-ts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embracecushion-color.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embracecushion-features.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embracecushion-insert.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace_cat.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-embrace_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-relief-lts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-relief-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-relief-ts-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-relief-ts_main.jpg" />
+	<Content Include="wwwroot\images\main_img\acta-relief_main.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster-x_features.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster-x_info.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster-x_main.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster_aircells.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster_cat.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster_features.jpg" />
+	<Content Include="wwwroot\images\main_img\adjuster_main.jpg" />
+	<Content Include="wwwroot\images\main_img\air-cells_main.jpg" />
+	<Content Include="wwwroot\images\main_img\allrounder_main.jpg" />
+	<Content Include="wwwroot\images\main_img\amp-quickrelease.jpg" />
+	<Content Include="wwwroot\images\main_img\amp-verticallyadjustable.jpg" />
+	<Content Include="wwwroot\images\main_img\ampkit_main.jpg" />
+	<Content Include="wwwroot\images\main_img\amputee-support-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\amp_main.jpg" />
+	<Content Include="wwwroot\images\main_img\arm-trough-hardware_main.jpg" />
+	<Content Include="wwwroot\images\main_img\armrest-pad-replacement_main.jpg" />
+	<Content Include="wwwroot\images\main_img\ascent_features.jpg" />
+	<Content Include="wwwroot\images\main_img\ascent_main.jpg" />
+	<Content Include="wwwroot\images\main_img\ascent_viscofoamischialinsert.jpg" />
+	<Content Include="wwwroot\images\main_img\ati_insert.jpg" />
+	<Content Include="wwwroot\images\main_img\bed-wedge_main.jpg" />
+	<Content Include="wwwroot\images\main_img\bendaback_main.jpg" />
+	<Content Include="wwwroot\images\main_img\boa_icon.png" />
+	<Content Include="wwwroot\images\main_img\boa_main.png" />
+	<Content Include="wwwroot\images\main_img\bodilink-hardware-extension-link_main.jpg" />
+	<Content Include="wwwroot\images\main_img\bodilink-range.jpg" />
+	<Content Include="wwwroot\images\main_img\bodilink-shape.jpg" />
+	<Content Include="wwwroot\images\main_img\bodilink_hardware.jpg" />
+	<Content Include="wwwroot\images\main_img\bodilink_main.jpg" />
+	<Content Include="wwwroot\images\main_img\boditrak_main.jpg" />
+	<Content Include="wwwroot\images\main_img\body-bolster_main.jpg" />
+	<Content Include="wwwroot\images\main_img\body-point-hip-belt_main.jpg" />
+	<Content Include="wwwroot\images\main_img\calf-protector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\catalog_main.jpg" />
+	<Content Include="wwwroot\images\main_img\chapstick.jpg" />
+	<Content Include="wwwroot\images\main_img\chest-harness-extension-kit_main.jpg" />
+	<Content Include="wwwroot\images\main_img\circle-pad-protector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\coccyx-cutout_main.jpg" />
+	<Content Include="wwwroot\images\main_img\coccyx-relief_main.jpg" />
+	<Content Include="wwwroot\images\main_img\combination-seat-and-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfort-arm-pride_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfort-arm_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfort-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfort-foot_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfort-gel_main.jpg" />
+	<Content Include="wwwroot\images\main_img\comfortarm-armstyles.jpg" />
+	<Content Include="wwwroot\images\main_img\comfortarm-hardware.jpg" />
+	<Content Include="wwwroot\images\main_img\compass-bracket_main.jpg" />
+	<Content Include="wwwroot\images\main_img\compass-hardware-4pt.jpg" />
+	<Content Include="wwwroot\images\main_img\compass-hardware_main.jpg" />
+	<Content Include="wwwroot\images\main_img\compass_hardware.jpg" />
+	<Content Include="wwwroot\images\main_img\complete-feet_main.jpg" />
+	<Content Include="wwwroot\images\main_img\completefeet-bolton.jpg" />
+	<Content Include="wwwroot\images\main_img\contour-visco-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\coozies.jpg" />
+	<Content Include="wwwroot\images\main_img\covertech_comforttek.jpg" />
+	<Content Include="wwwroot\images\main_img\covertech_glidewear.jpg" />
+	<Content Include="wwwroot\images\main_img\covertech_glidewearlogo.jpg" />
+	<Content Include="wwwroot\images\main_img\covertech_piping.jpg" />
+	<Content Include="wwwroot\images\main_img\covertech_stretchair.jpg" />
+	<Content Include="wwwroot\images\main_img\curve_features.jpg" />
+	<Content Include="wwwroot\images\main_img\curve_main.jpg" />
+	<Content Include="wwwroot\images\main_img\custom-acta-back-deep_main.jpg" />
+	<Content Include="wwwroot\images\main_img\custom-acta-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\custom-acta-embrace_main.jpg" />
+	<Content Include="wwwroot\images\main_img\custom-acta-relief_main.jpg" />
+	<Content Include="wwwroot\images\main_img\display-rack_main.jpg" />
+	<Content Include="wwwroot\images\main_img\donut-ring_main.jpg" />
+	<Content Include="wwwroot\images\main_img\double-footbox_main.jpg" />
+	<Content Include="wwwroot\images\main_img\durasoft-full_main.jpg" />
+	<Content Include="wwwroot\images\main_img\durasoft-half_main.jpg" />
+	<Content Include="wwwroot\images\main_img\econasoft_main.jpg" />
+	<Content Include="wwwroot\images\main_img\elements-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\elements-with-gel_main.jpg" />
+	<Content Include="wwwroot\images\main_img\elements_adjustable.jpg" />
+	<Content Include="wwwroot\images\main_img\elements_back_folded.jpg" />
+	<Content Include="wwwroot\images\main_img\elements_features.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-contoured-foam_main.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-contoured-gel_main.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-contoured-visco_main.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-foam_main.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-gel_main.jpg" />
+	<Content Include="wwwroot\images\main_img\express-comfort-visco_main.jpg" />
+	<Content Include="wwwroot\images\main_img\external-fixator-leg-rest_main.jpg" />
+	<Content Include="wwwroot\images\main_img\eztray_main.jpg" />
+	<Content Include="wwwroot\images\main_img\flat-top-lateral-roll_main.jpg" />
+	<Content Include="wwwroot\images\main_img\flexion-footbox-single_main.jpg" />
+	<Content Include="wwwroot\images\main_img\flexion-footbox_main.jpg" />
+	<Content Include="wwwroot\images\main_img\flip-up-half-tray_main.jpg" />
+	<Content Include="wwwroot\images\main_img\foam-cushion_main.jpg" />
+	<Content Include="wwwroot\images\main_img\gait-belt_main.jpg" />
+	<Content Include="wwwroot\images\main_img\gap-space-eliminator_main.jpg" />
+	<Content Include="wwwroot\images\main_img\glidewear_logo.jpg" />
+	<Content Include="wwwroot\images\main_img\go-grips_main.jpg" />
+	<Content Include="wwwroot\images\main_img\halo-bedframe.jpg" />
+	<Content Include="wwwroot\images\main_img\halo-pad-protector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\halo-rotatinghandle.jpg" />
+	<Content Include="wwwroot\images\main_img\halo-safety-ring-alc_main.jpg" />
+	<Content Include="wwwroot\images\main_img\halo-zones.jpg" />
+	<Content Include="wwwroot\images\main_img\halo_main.jpg" />
+	<Content Include="wwwroot\images\main_img\handi-hook_main.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-adjustablehardware.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-backhardware.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-hardware-extension-link_main.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-hardwaremain.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-hardware_main.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest-vshape.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest_hardware.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest_main.jpg" />
+	<Content Include="wwwroot\images\main_img\headrest_pad.jpg" />
+	<Content Include="wwwroot\images\main_img\hip-bolster_main.jpg" />
+	<Content Include="wwwroot\images\main_img\hip-guide_main.jpg" />
+	<Content Include="wwwroot\images\main_img\hyalite_features.jpg" />
+	<Content Include="wwwroot\images\main_img\hyalite_main.jpg" />
+	<Content Include="wwwroot\images\main_img\hyalite_viscomemoryfoam.jpg" />
+	<Content Include="wwwroot\images\main_img\inception_main.jpg" />
+	<Content Include="wwwroot\images\main_img\incontinence-liner_main.jpg" />
+	<Content Include="wwwroot\images\main_img\incrediback-deep_main.jpg" />
+	<Content Include="wwwroot\images\main_img\incrediback_folded.jpg" />
+	<Content Include="wwwroot\images\main_img\incrediback_main.jpg" />
+	<Content Include="wwwroot\images\main_img\incredihugger_main.jpg" />
+	<Content Include="wwwroot\images\main_img\isk_main-old.jpg" />
+	<Content Include="wwwroot\images\main_img\isk_main.jpg" />
+	<Content Include="wwwroot\images\main_img\lateral-hardware-cover_main.jpg" />
+	<Content Include="wwwroot\images\main_img\lateral-hardware-extension-link_main.jpg" />
+	<Content Include="wwwroot\images\main_img\lateral-hardware_main.jpg" />
+	<Content Include="wwwroot\images\main_img\lateral-roll_main.jpg" />
+	<Content Include="wwwroot\images\main_img\lateral-support-assembly_main.jpg" />
+	<Content Include="wwwroot\images\main_img\laterals-swingawayhardware.jpg" />
+	<Content Include="wwwroot\images\main_img\laterals-verticalmotion.jpg" />
+	<Content Include="wwwroot\images\main_img\laterals-widthadjustable.jpg" />
+	<Content Include="wwwroot\images\main_img\laterals_main.jpg" />
+	<Content Include="wwwroot\images\main_img\leg-abductor-wedge_main.jpg" />
+	<Content Include="wwwroot\images\main_img\leg-cradle-protector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty-premier_main.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty-vicairtechnology.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty-x_features.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty-x_info.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty-x_main.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty_features.jpg" />
+	<Content Include="wwwroot\images\main_img\liberty_main.jpg" />
+	<Content Include="wwwroot\images\main_img\limb-protector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\link_system_tech.jpg" />
+	<Content Include="wwwroot\images\main_img\m2_cushionstyles.jpg" />
+	<Content Include="wwwroot\images\main_img\m2_features.jpg" />
+	<Content Include="wwwroot\images\main_img\m2_main.jpg" />
+	<Content Include="wwwroot\images\main_img\m2_quadra3dgel.jpg" />
+	<Content Include="wwwroot\images\main_img\machine-washable_main.jpg" />
+	<Content Include="wwwroot\images\main_img\maxxcare-features.jpg" />
+	<Content Include="wwwroot\images\main_img\maxxcare_main.jpg" />
+	<Content Include="wwwroot\images\main_img\maxx_features.jpg" />
+	<Content Include="wwwroot\images\main_img\maxx_main.jpg" />
+	<Content Include="wwwroot\images\main_img\mens_polo_black.jpeg" />
+	<Content Include="wwwroot\images\main_img\mens_polo_grey.jpeg" />
+	<Content Include="wwwroot\images\main_img\mens_polo_royal.jpeg" />
+	<Content Include="wwwroot\images\main_img\micro-strand-cushion_main.jpg" />
+	<Content Include="wwwroot\images\main_img\moldable_support.jpg" />
+	<Content Include="wwwroot\images\main_img\molded-arm_main.jpg" />
+	<Content Include="wwwroot\images\main_img\molded-contoured-foam-cushion_main.jpg" />
+	<Content Include="wwwroot\images\main_img\molded-foot-support_main.jpg" />
+	<Content Include="wwwroot\images\main_img\molded-lumbar-support_main.jpg" />
+	<Content Include="wwwroot\images\main_img\no-lean_main.jpg" />
+	<Content Include="wwwroot\images\main_img\pelvic-stabilizer_main.jpg" />
+	<Content Include="wwwroot\images\main_img\pen.jpeg" />
+	<Content Include="wwwroot\images\main_img\quadragelpack.jpg" />
+	<Content Include="wwwroot\images\main_img\quickrelease-amp_main.jpg" />
+	<Content Include="wwwroot\images\main_img\quickreleaseamp-quickreleasehardware.jpg" />
+	<Content Include="wwwroot\images\main_img\radius-back-lumbar-support_main.jpg" />
+	<Content Include="wwwroot\images\main_img\radius-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\ridge_features.jpg" />
+	<Content Include="wwwroot\images\main_img\ridge_main.jpg" />
+	<Content Include="wwwroot\images\main_img\rigid-insert_main.jpg" />
+	<Content Include="wwwroot\images\main_img\saddle-7_main.jpg" />
+	<Content Include="wwwroot\images\main_img\saddle7_features.jpg" />
+	<Content Include="wwwroot\images\main_img\saddle_cushionstyles.jpg" />
+	<Content Include="wwwroot\images\main_img\saddle_features.jpg" />
+	<Content Include="wwwroot\images\main_img\saddle_main.jpg" />
+	<Content Include="wwwroot\images\main_img\safe-secure_main.jpg" />
+	<Content Include="wwwroot\images\main_img\shield_main.jpg" />
+	<Content Include="wwwroot\images\main_img\sidehugger_main.jpg" />
+	<Content Include="wwwroot\images\main_img\sideminder-headrest_main.jpg" />
+	<Content Include="wwwroot\images\main_img\sideminder_horizontal.jpg" />
+	<Content Include="wwwroot\images\main_img\sideminder_main.jpg" />
+	<Content Include="wwwroot\images\main_img\sideminder_quickrelease.jpg" />
+	<Content Include="wwwroot\images\main_img\sideminder_vertical.jpg" />
+	<Content Include="wwwroot\images\main_img\single-footbox_main.jpg" />
+	<Content Include="wwwroot\images\main_img\singlefoot-elevating.jpg" />
+	<Content Include="wwwroot\images\main_img\singlefoot-hardware.jpg" />
+	<Content Include="wwwroot\images\main_img\sit-n-place_main.jpg" />
+	<Content Include="wwwroot\images\main_img\sit-n-shape_main.jpg" />
+	<Content Include="wwwroot\images\main_img\smart-seat_main.jpg" />
+	<Content Include="wwwroot\images\main_img\soft-arm_main.jpg" />
+	<Content Include="wwwroot\images\main_img\soft-rail_main.jpg" />
+	<Content Include="wwwroot\images\main_img\solid-seat-pan_main.jpg" />
+	<Content Include="wwwroot\images\main_img\stayflex_main.jpg" />
+	<Content Include="wwwroot\images\main_img\support-pro-7_main.jpg" />
+	<Content Include="wwwroot\images\main_img\support-pro_main.jpg" />
+	<Content Include="wwwroot\images\main_img\supportpro7_features.jpg" />
+	<Content Include="wwwroot\images\main_img\supportpro_cushionstyles.jpg" />
+	<Content Include="wwwroot\images\main_img\supportpro_features.jpg" />
+	<Content Include="wwwroot\images\main_img\swing-clear-half_main.jpg" />
+	<Content Include="wwwroot\images\main_img\swingaway-amp_main.jpg" />
+	<Content Include="wwwroot\images\main_img\swingawayamp-quickreleasehardware.jpg" />
+	<Content Include="wwwroot\images\main_img\swingawayamp-verticaladjustability.jpg" />
+	<Content Include="wwwroot\images\main_img\tape_measure.jpeg" />
+	<Content Include="wwwroot\images\main_img\toilet-seat_main.jpg" />
+	<Content Include="wwwroot\images\main_img\truform-viscofoam.jpg" />
+	<Content Include="wwwroot\images\main_img\truform_features.jpg" />
+	<Content Include="wwwroot\images\main_img\truform_main.jpg" />
+	<Content Include="wwwroot\images\main_img\trunk-support_main.jpg" />
+	<Content Include="wwwroot\images\main_img\twin-gel-pack-foam_cat.jpg" />
+	<Content Include="wwwroot\images\main_img\twin-gel-pack-foam_main.jpg" />
+	<Content Include="wwwroot\images\main_img\valgel_main.jpg" />
+	<Content Include="wwwroot\images\main_img\vault-bag.jpg" />
+	<Content Include="wwwroot\images\main_img\vector-x_features.jpg" />
+	<Content Include="wwwroot\images\main_img\vector-x_info.jpg" />
+	<Content Include="wwwroot\images\main_img\vector-x_main.jpg" />
+	<Content Include="wwwroot\images\main_img\vector_aircells.jpg" />
+	<Content Include="wwwroot\images\main_img\vector_features.jpg" />
+	<Content Include="wwwroot\images\main_img\vector_main.jpg" />
+	<Content Include="wwwroot\images\main_img\versa-x_features.jpg" />
+	<Content Include="wwwroot\images\main_img\versa-x_info.jpg" />
+	<Content Include="wwwroot\images\main_img\versa-x_main.jpg" />
+	<Content Include="wwwroot\images\main_img\vicairpelvicstablizer_main.jpg" />
+	<Content Include="wwwroot\images\main_img\visco-back-deep_main.jpg" />
+	<Content Include="wwwroot\images\main_img\visco-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\visco-memory-foam-back_main.jpg" />
+	<Content Include="wwwroot\images\main_img\visco-memory-foam-cushion_main.jpg" />
+	<Content Include="wwwroot\images\main_img\womens_polo_black.png" />
+	<Content Include="wwwroot\images\main_img\womens_polo_grey.png" />
+	<Content Include="wwwroot\images\main_img\womens_polo_white.png" />
+	<Content Include="wwwroot\images\main_img\womens_tee_charcoal.png" />
+	<Content Include="wwwroot\images\main_img\wooden-lap-tray_main.jpg" />
+	<Content Include="wwwroot\js\pickerApp.js" />
+	<Content Include="wwwroot\js\demo.js" />
+	<Content Include="wwwroot\js\picker.js" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
+	<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+	<PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+	<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
+	<PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+	<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\lib\">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Folder>
+	<Folder Include="Views\Shared\" />
+	<Folder Include="wwwroot\lib\">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Folder>
   </ItemGroup>
   <ItemGroup>
-    <Content Update="wwwroot/css\site.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 45 Book Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 45 Book.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 55 Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 65 Medium Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 85 Heavy.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 95 Black Oblique.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir LT 95 Black.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\Avenir Next.ttc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-BoldItalic.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-BoldItalicAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-Book.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-BookItalic.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-BookItalicAlt.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-Demi.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-Light.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-LightIA.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot/fonts\NeutraText-LightItalic.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+	<Content Update="wwwroot/css\site.css">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 45 Book Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 45 Book.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 55 Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 65 Medium Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 85 Heavy.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 95 Black Oblique.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir LT 95 Black.ttf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\Avenir Next.ttc">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-BoldItalic.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-BoldItalicAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-Book.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-BookItalic.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-BookItalicAlt.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-Demi.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-Light.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-LightIA.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/fonts\NeutraText-LightItalic.otf">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
   </ItemGroup>
 
 </Project>

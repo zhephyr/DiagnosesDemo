@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,16 @@ namespace DiagnosesDemo.Models
 {
     public class Product
     {
-		public String name { get; set; }
-		public String desc { get; set; }
-		public String main_img { get; set; }
-		public String[] catagories { get; set; }
+		[BsonElement("name")]
+		public String Name { get; set; }
+
+		[BsonElement("desc")]
+		public String Desc { get; set; }
+
+		[BsonElement("main_img")]
+		public String Main_img { get; set; }
+
+		[BsonElement("categpries")]
+		public String[] Catagories { get; set; }
     }
 }

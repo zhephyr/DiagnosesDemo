@@ -45,4 +45,11 @@ app.controller('pickerCtrl', function ($scope, $http) {
 			}
 		}
 	}, true);
+
+	$scope.currentPage = 1;
+	$scope.pageSize = 15;
+
+	$http.get('/api/products').then(function (response) {
+		$scope.products = response.data;
+	});
 });

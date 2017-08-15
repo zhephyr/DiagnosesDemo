@@ -40,6 +40,25 @@
 	.filter ul {
 		list-style-type: none;
 	}
+
+	.product-sec {
+		padding: 2.5vh;
+	}
+
+	.product-sec > tr > td * {
+		text-align: center;
+	}
+
+	.placeholder {
+		background-color: grey;
+		width: 100%;
+		padding-top :100%;
+		position: relative;
+	}
+
+	.product-holder {
+		padding: 1em;
+	}
 </style>
 
 <html ng-app="pickerApp">
@@ -162,7 +181,29 @@
 			</div>
 		</div>
 		<div id="products" class="Cell -10of12">
-
+			<table class="product-sec" style="width:100%;">
+				<tr ng-repeat="product in curr_product = products.slice((currentPage-1)*pageSize, (currentPage)*pageSize)" ng-switch="$index % 3">
+					<td ng-switch-when="0">
+						<div class="product-holder" ng-show="curr_product[$index]">
+							<div class="placeholder"><img src="~/images/main_img/{{curr_product[$index].main_img}}" style="width:100%; height:auto;" /></div>
+							<p class="title">{{curr_product[$index].name}}</p>
+						</div>
+					</td>
+					<td ng-switch-when="0">
+						<div class="product-holder" ng-show="curr_product[$index+1]">
+							<div class="placeholder"><img src="~/images/main_img/{{curr_product[$index+1].main_img}}" style="width:100%; height:auto;" /></div>
+							<p class="title">{{curr_product[$index+1].name}}</p>
+						</div>
+					</td>
+					<td ng-switch-when="0">
+						<div class="product-holder" ng-show="curr_product[$index+2]">
+							<div class="placeholder"><img src="~/images/main_img/{{curr_product[$index+2].main_img}}" style="width:100%; height:auto;" /></div>
+							<p class="title">{{curr_product[$index+2].name}}</p>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<uib-pagination total-items="products.length" ng-model="currentPage" items-per-page="pageSize" max-size="5" class="pagination-sm" boundary-link-numbers="true" rotate="false" />
 		</div>
 	</div>
 </body>
