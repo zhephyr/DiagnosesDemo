@@ -94,6 +94,10 @@ hr {
 input, select {
 	vertical-align: middle;
 }
+
+ul {
+	list-style: none;
+}
 /*#endregion CSS Reset */
 /*#region Font CSS */
 /*#region Font-Family CSS */
@@ -524,49 +528,71 @@ input[type="checkbox"] {
 	height: 100vh;
 	padding: 2.167vh 1.67vh;
 }
+
+.cancel li {
+	position: relative;
+}
+
+	.cancel li:before {
+		position: absolute;
+		display: block;
+		content: '\2022';
+		text-indent: -999999px;
+		left: -1.25em;
+		bottom: 0.05em;
+		width: 1.05em;
+		height: 1.05em;
+		background-image: url('../images/icons/Cancel_wht grey_512.png');
+		background-size: 1em;
+		background-repeat: no-repeat;
+	}
+
+	.cancel li {
+		cursor: pointer;
+	}
 /*#endregion Global CSS*/
 /*#region Mobile CSS */
-@media only screen and (max-width: 768px) {
-	.Grid {
+@media only screen and (max-width: 960px) {
+	.header .Grid {
 		flex-direction: column;
 	}
 
-	.Cell {
+	.header .Cell {
 		width: 100% !important;
 	}
 
-	.panel-body {
+	.header .panel-body {
 		color: #56565c;
 	}
 
-		.panel-body > .Grid > div.Cell {
+		.header .panel-body > .Grid > div.Cell {
 			padding: 0.5em 0;
 		}
 
-			.panel-body > .Grid > div.Cell:first-child {
+			.header .panel-body > .Grid > div.Cell:first-child {
 				padding: 0 0 0.5em 0;
 			}
 
-			.panel-body > .Grid > div.Cell:last-child {
+			.header .panel-body > .Grid > div.Cell:last-child {
 				padding: 0.5em 0 0 0;
 			}
 
-	.select-group {
+	.header .select-group {
 		display: flex !important;
 		flex-direction: column !important;
 		-webkit-box-orient: vertical !important;
 		-webkit-box-direction: normal !important;
 	}
 
-		.select-group > select {
+		.header .select-group > select {
 			margin: 0.5em 0;
 		}
 
-			.select-group > select:first-child {
+			.header .select-group > select:first-child {
 				margin: 0 0 0.5em 0;
 			}
 
-			.select-group > select:last-child {
+			.header .select-group > select:last-child {
 				margin: 0.5em 0 0 0;
 			}
 }

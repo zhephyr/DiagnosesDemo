@@ -80,6 +80,20 @@
 	</Content>
 	<Content Include="wwwroot\fonts\NeutraText-LightIA.otf" />
 	<Content Include="wwwroot\fonts\NeutraText-LightItalic.otf" />
+	<Content Include="wwwroot\images\icons\Cancel_blu grey_512.png" />
+	<Content Include="wwwroot\images\icons\Cancel_blu wht_vector.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\images\icons\Cancel_blu_512.png" />
+	<Content Include="wwwroot\images\icons\Cancel_blu_vector.png" />
+	<Content Include="wwwroot\images\icons\Cancel_wht grey_512.png" />
+	<Content Include="wwwroot\images\icons\Cancel_wht grey_vector.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="wwwroot\images\icons\Cancel_wht_512.png" />
+	<Content Include="wwwroot\images\icons\Cancel_wht_vector.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
 	<Content Include="wwwroot\images\main_img\2013-dealer-catalog_main.jpg" />
 	<Content Include="wwwroot\images\main_img\abduction-pillow_main.jpg" />
 	<Content Include="wwwroot\images\main_img\acta-back-contour_main.jpg" />
@@ -347,14 +361,19 @@
 	<Content Include="wwwroot\js\pickerApp.js" />
 	<Content Include="wwwroot\js\demo.js" />
 	<Content Include="wwwroot\js\picker.js" />
+	<Content Include="wwwroot\lib\angular-loading-overlay-http-interceptor\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
 	<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
 	<PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
 	<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
 	<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.2" />
 	<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
 	<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
 	<PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
@@ -367,8 +386,11 @@
 	</Folder>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\ProductFamilies.cs" />
+  </ItemGroup>
+  <ItemGroup>
 	<Content Update="wwwroot/css\site.css">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
 	<Content Update="wwwroot/fonts\Avenir LT 45 Book Oblique.ttf">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -420,6 +442,9 @@
 	</Content>
 	<Content Update="wwwroot/fonts\NeutraText-LightItalic.otf">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Update="wwwroot/images\icons\Cancel_blu_vector.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
   </ItemGroup>
 
