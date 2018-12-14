@@ -12,7 +12,7 @@ namespace DiagnosesDemo.Controllers
 {
 	public class HomeController : Controller
 	{
-		private String connectionStr = "mongodb://cc-dev:8G5EdJHiJk3j@localhost:27017/dev-db";
+		private String connectionStr = "mongodb://cc-admin:JMg4CCrY66Mg@45.33.27.14:27017/admin";
 
 		public IActionResult Index()
 		{
