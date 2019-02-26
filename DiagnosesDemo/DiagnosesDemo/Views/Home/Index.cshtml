@@ -1,225 +1,247 @@
 ﻿@{
-	ViewData["Title"] = "Demo";
+    ViewData["Title"] = "Demo";
 }
 <meta name="viewport" content="width=device-width">
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/angular/angular.min.js"></script>
 <script src="~/lib/angular-animate/angular-animate.min.js"></script>
 <script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="~/js/pickerApp.js"></script>
-<script src="~/lib/spin.js/spin.js"></script>
-<script src="~/lib/angular-loading/angular-loading.js"></script>
+<script src="~/js/sliderApp.js"></script>
 
-<link href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
-<link href="~/lib/grd/grd.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/grd/src/grd.css" rel="stylesheet" />
 <link href="~/css/site.css" rel="stylesheet" />
-<link href="~/lib/angular-loading/angular-loading.css" rel="stylesheet" />
+
 <style type="text/css">
-	#category {
-		width: 92.5%;
-		padding-left: 3.125%;
-		background-color: transparent;
-		border: none;
-	}
+    .btn-big {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        padding: 10px 16px;
+        font-size: 3em;
+        line-height: 1.333333333;
+        border-radius: 6px;
+    }
 
-		#category *:not(.btn), #category *:not(input), #category *:not(select) {
-			border: none;
-		}
+        .btn-big.selected {
+            border: 1px solid white;
+            color: white;
+            background-color: #009AC7;
+        }
 
-	.parent-panel > div > h4 > a > span {
-		font-size: 5vh;
-	}
+    .btn-cornered {
+        border: none !important;
+        border-radius: 0 !important;
+    }
 
-	#choice {
-		margin-right: 8.33%
-	}
+    #category {
+        width: 92.5%;
+        padding-left: 3.125%;
+        background-color: transparent;
+        border: none;
+    }
 
-	#filters {
-		color: #0096d6;
-	}
+        #category *:not(.btn), #category *:not(input), #category *:not(select) {
+            border: none;
+        }
 
-	.filter {
-		border-top: 1px solid #0096d6;
-		padding: 0.67em 0;
-	}
+    .parent-panel > div > h4 > a > span {
+        font-size: 5vh;
+    }
 
-		.filter ul {
-			list-style-type: none;
-		}
+    #choice {
+        margin-right: 8.33%
+    }
 
-	.product-sec {
-		padding: 2.5vh;
-	}
+    #filters {
+        color: #0096d6;
+    }
 
-		.product-sec tr > td {
-			width: 33.3%;
-		}
+    .filter {
+        border-top: 1px solid #0096d6;
+        padding: 0.67em 0;
+    }
 
-	.product-holder {
-		padding: 1em;
-	}
+        .filter ul {
+            list-style-type: none;
+        }
+
+    .product-sec {
+        padding: 2.5vh;
+    }
+
+        .product-sec tr > td {
+            width: 33.3%;
+        }
+
+    .product-holder {
+        padding: 1em;
+    }
+
+    .header {
+        margin-top: initial !important;
+    }
+
+    .titlebar {
+        width: 100%;
+        height: 4.167vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        border-bottom: .333333em solid #004F7E;
+    }
+
+    .slide {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .banner-hero {
+        width: 100%;
+        height: 83vh;
+        background-color: #004F7E;
+        border-bottom: .333333em solid #004F7E;
+    }
+
+    .banner-titan {
+        width: 100%;
+        height: 83vh;
+        background-color: #DCDDDE;
+        border-bottom: .333333em solid #004F7E;
+    }
+
+    .banner-prussian {
+        width: 100%;
+        height: 83vh;
+        background-color: #002855;
+        border-bottom: .333333em solid #004F7E;
+    }
+
+    .banner-steel {
+        width: 100%;
+        height: 83vh;
+        background-color: #A7A9AC;
+        border-bottom: .333333em solid #004F7E;
+    }
+
+    h1 {
+        font-size: 8.33vh !important;
+        color: #009AC7;
+    }
+
+    .question {
+        opacity: 0;
+    }
+
+        .question:first-child {
+            opacity: 1;
+        }
+
+    .chev-long {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .chev-long > i {
+            color: white;
+            font-size: 2em;
+        }
+
+        .chev-long.bck:hover {
+            background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,.333));
+        }
+
+        .chev-long.fwd:hover {
+            background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,.333));
+        }
+
+    .img-bubble {
+        width: 75%;
+        padding-bottom: 75%;
+        margin-left: 12.5%;
+        border: .25em solid #002855;
+        border-radius: 50%;
+        transition: transform 1s;
+        transition-timing-function: cubic-bezier(0, 1.5, 1, 0.83);
+        -webkit-transition: transform 1s;
+        -webkit-transition-timing-function: cubic-bezier(0, 1.5, 1, 0.83);
+    }
+
+        .img-bubble.main {
+            width: 100%;
+            padding-bottom: 100%;
+            margin: unset;
+        }
 </style>
 
-<html ng-app="pickerApp">
-<body class="container" ng-controller="pickerCtrl">
-	<div id="header" class="header">
-		<uib-accordion>
-			@*<h1 style="padding-left:8.33%">Start My Search</h1>*@
-			<div uib-accordion-group id="category" class="parent-panel" heading="Start My Search" is-open="head_status.parent" style="padding-left: 6.25%; width: 100%; font-size: 5vh;">
-				<uib-accordion>
-					<div id="category" uib-accordion-group class="panel-default" heading="{{placehold.diagnosis}}" is-open="head_status.third" @*ng-hide="options.prod_type == ''" *@>
-						<div id="diagnoses" class="Grid -left" style="flex-wrap: nowrap;">
-							<div class="Cell -4of12" style="display: table;">
-								<p class="subhead">Diagnosed Condition</p>
-								<div class="input-group">
-									<input list="info" class="form-control" ng-model="condition.current" />
-									<span class="input-group-btn">
-										<button class="btn btn-primary" style="border:1px solid #53565c; height: 34px; padding: 0 0.5em;" type="button" ng-click="addDiagnosis()">
-											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-										</button>
-									</span>
-								</div>
-								<datalist id="info">
-									<option ng-repeat="diagnosis in diagnoses track by $index" value="{{diagnosis.ICD10 + ' | ' + diagnosis.desc}}" />
-								</datalist>
-								<div style="padding: 1em 0 0 1.5em;">
-									<ul class="cancel">
-										<li ng-repeat="chosen in diagnoses_chosen" style="color: white;" ng-click="removeCode(chosen)">{{chosen}}</li>
-									</ul>
-								</div>
-							</div>
-							<div class="Cell -3of12">
-								<p class="subhead">Which Medicare Code do you qualify for?</p>
-								<div class="select-group">
-									<select size="5" class="form-control" ng-model="options.hcpcs" multiple>
-										<option ng-repeat="code in hcpcs" selected="selected">{{code}}</option>
-									</select>
-								</div>
-							</div>
-							<div class="Cell -3of12">
-								<p class="subhead">Back Size?</p>
-								<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Pediatric</button>
-								<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Bariatric</button>
-								<button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Adult Standard</button>
-							</div>
-							<div class="Cell -2of12" style="text-align: center;">
-								<h1 style="width: 100%; color: #b40020; margin-top: .33em">{{products.length}}</h1>
-								<button class="btn btn-danger" ng-click="collapseHeader()">Products Found</button>
-							</div>
-						</div>
-					</div>
-					<div id="category" uib-accordion-group class="panel-default" heading="{{(options.main_cat != '') ? options.main_cat : placehold.main_cat}}" is-open="head_status.first">
-						<div class="Grid -left">
-							<button id="choice" type="button" class="btn-lg btn-dark Cell -4of12" ng-model="options.main_cat" uib-btn-radio="'REHAB'">Rehabilitation</button>
-							<button id="choice" type="button" class="btn-lg btn-dark Cell -4of12" ng-model="options.main_cat" uib-btn-radio="'LTC'">Long Term Care</button>
-						</div>
-					</div>
-					<div id="category" uib-accordion-group class="panel-default" heading="{{(options.prod_type != '') ? options.prod_type: placehold.prod_type}}" is-open="head_status.second" @*ng-hide="options.main_cat == ''"*@>
-						<div class="Grid -left">
-							<button id="choice" type="button" class="btn-lg btn-dark Cell -3of12" ng-model="options.prod_type" uib-btn-radio="'SEATCU'">Cushion</button>
-							<button id="choice" type="button" class="btn-lg btn-dark Cell -3of12" ng-model="options.prod_type" uib-btn-radio="'BACKCU'">Backs</button>
-							<button id="choice" type="button" class="btn-lg btn-dark Cell -3of12" ng-model="options.prod_type" uib-btn-radio="'ACCESS'">Accessories</button>
-						</div>
-					</div>
-				</uib-accordion>
-				<div class="Grid -right" style="height: 2.167vh">
-					<button class="btn btn-link btn-lg Cell -1of12" style="color: #ffffff;">Reset</button>
-				</div>
-			</div>
-		</uib-accordion>
-	</div>
-	<div id="content" class="content Grid">
-		<div id="filters" class="Cell -2of12">
-			<p class="title">Refine Your Search</p>
-			<p style="padding-bottom: 0.67em;">83 Total Results</p>
-			<div class="filter" ng-show="options.hcpcs.length">
-				<p class="title">Medicare Code:</p>
-				<ul>
-					<li ng-repeat="code in options.hcpcs">
-						<input id="{{code}}" type="checkbox" ng-model="hcpcs_filter[code]" />
-						<label for="{{code}}"><span></span>{{code}}</label>
-					</li>
-				</ul>
-			</div>
-			<div class="filter" ng-show="options.prod_type == 'SEATCU'">
-				<p class="title">Padding Type:</p>
-				<ul>
-					<li>
-						<input id="air" type="checkbox" ng-model="pad_filter.air" />
-						<label for="air"><span></span>Air</label>
-					</li>
-					<li>
-						<input id="foam" type="checkbox" ng-model="pad_filter.foam" />
-						<label for="foam"><span></span>Foam</label>
-					</li>
-					<li>
-						<input id="foam_gel" type="checkbox" ng-model="pad_filter.gel" />
-						<label for="foam_gel"><span></span>Foam / Gel</label>
-					</li>
-				</ul>
-			</div>
-			<div class="filter">
-				<p class="title">Shape:</p>
-				<ul>
-					<li>
-						<input id="linear" type="checkbox" ng-model="shape.linear" />
-						<label for="linear"><span></span>Linear</label>
-					</li>
-					<li>
-						<input id="contour" type="checkbox" ng-model="shape.contour" />
-						<label for="contour"><span></span>Contoured</label>
-					</li>
-				</ul>
-			</div>
-			<div class="filter">
-				<p class="title">Cover:</p>
-				<ul>
-					<li>
-						<input id="fluid_res" type="checkbox" ng-model="cover.fluid_res" />
-						<label for="fluid_res"><span></span>Fluid Resistant</label>
-					</li>
-					<li>
-						<input id="breath" type="checkbox" ng-model="cover.breath" />
-						<label for="breath"><span></span>Breathable</label>
-					</li>
-					<li>
-						<input id="anti_shear" type="checkbox" ng-model="cover.anti_shear" />
-						<label for="anti_shear"><span></span>Anti-Shear</label>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="products" class="Cell -10of12" dw-loading="products" dw-loading-options="{text: 'Loading products...'}">
-			<table class="product-sec" style="width:100%;">
-				<tr ng-repeat="product in curr_product = products.slice((currentPage-1)*pageSize, (currentPage)*pageSize)" ng-switch="$index % 3">
-					<td ng-switch-when="0">
-						<div class="product-holder" ng-show="curr_product[$index]">
-							<img src="~/images/main_img/{{curr_product[$index].main_img}}" style="width:100%; height:auto;" />
-							<p class="title">{{curr_product[$index].name}}</p>
-							<p class="subhead" style="color: #0096d6;">{{curr_product[$index].hcpcs | codes}}</p>
-						</div>
-					</td>
-					<td ng-switch-when="0">
-						<div class="product-holder" ng-show="curr_product[$index+1]">
-							<img src="~/images/main_img/{{curr_product[$index+1].main_img}}" style="width:100%; height:auto;" />
-							<p class="title">{{curr_product[$index+1].name}}</p>
-							<p class="subhead" style="color: #0096d6;">{{curr_product[$index+1].hcpcs | codes}}</p>
-						</div>
-					</td>
-					<td ng-switch-when="0">
-						<div class="product-holder" ng-show="curr_product[$index+2]">
-							<img src="~/images/main_img/{{curr_product[$index+2].main_img}}" style="width:100%; height:auto;" />
-							<p class="title">{{curr_product[$index+2].name}}</p>
-							<p class="subhead" style="color: #0096d6;">{{curr_product[$index+2].hcpcs | codes}}</p>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<div style="width: 100%; text-align: center;">
-				<uib-pagination total-items="products.length" ng-model="currentPage" items-per-page="pageSize" max-size="5" class="pagination-sm" boundary-link-numbers="true" rotate="false" />
-			</div>
-		</div>
-	</div>
+<html ng-app="sliderApp">
+<body ng-controller="sliderApp">
+    <div class="titlebar" style="z-index:3;">
+        <img src="~/images/main_img/Permobil_BlueLogo_NoTag.png" style="margin:.5em 4.167em; height:2.5vh;" />
+    </div>
+    <div class="slide">
+        <div class="banner-titan Grid -left" id="banner1">
+            <div class="Cell -1of12"></div>
+            <div class="Cell -6of12" style="padding-top:12.5em;">
+                <img src="~/images/main_img/Permobil_BlueLogo_NoTag.png" style="height:8.333333em; margin-bottom:4.1666667em;" />
+                <h1 style="padding-left:16.666667%;">Find the best bundle for your patient</h1>
+                <div style="text-align:right; margin-top:12.5em;">
+                    <input class="btn btn-link" style="text-decoration:underline;" value="See all bundles >>" />
+                </div>
+            </div>
+            <div class="Cell -1of12"></div>
+            <div class="Cell -2of12" style="padding-top:8.33em; text-align:center;">
+                <div uib-carousel active="active" interval="5000" style="height:45vh; width:min-content; margin-bottom:8.33em;">
+                    <div uib-slide ng-repeat="x in [].constructor(5) track by $index" index="$index">
+                        <img src="~/images/main_img/blank_slide.png" style="height:45vh;" />
+                        <div class="carousel-caption">
+                            <p>Bundle #{{$index}}</p>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="btn-big btn-primary btn-cornered" value="Get Started" ng-click="gotoBanner(2)" />
+            </div>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="banner-prussian Grid -center" id="banner2" style="position:relative;">
+            <div id="slide{{$index}}" class="Cell -10of12 question" style="position:absolute;" ng-repeat="url in questionUrls track by $index">
+                <div style="width:100%; margin-top:4.1666667em; border-bottom:2px solid white; text-align:center; vertical-align:middle;">
+                    <h2 style="color:white; font-style:italic;">{{$index + 1}}  <span style="font-family:neutratext-light !important;">of</span>  2</h2>
+                </div>
+                <div ng-include="url"></div>
+            </div>
+        </div>
+    </div>
+    <div class="slide">
+        <div id="banner3" class="banner-steel Grid -middle -center">
+            <div class="Cell -11of12">
+
+            </div>
+            <div class="Cell -11of12" style="position:relative;">
+                <div class="Grid -middle -center">
+                    <div style="width:100%; border:.25em solid #002855; border-radius:.25em; position:absolute; z-index: 0;"></div>
+                    <div class="Cell -2of12" style="z-index: 1;">
+                        <div class="img-bubble" ng-click="selectBubble(0)" ng-show="bundles[4]"></div>
+                    </div>
+                    <div class="Cell -2of12" style="z-index: 1;">
+                        <div class="img-bubble" ng-click="selectBubble(1)" ng-show="bundles[2]">{{bundle_answers}}</div>
+                    </div>
+                    <div class="Cell -4of12" style="z-index: 1;">
+                        <div class="img-bubble main" ng-click="selectBubble(2)" ng-show="bundles[0]">{{bundles}}</div>
+                    </div>
+                    <div class="Cell -2of12" style="z-index: 1;">
+                        <div class="img-bubble" ng-click="selectBubble(3)" ng-show="bundles[1]"></div>
+                    </div>
+                    <div class="Cell -2of12" style="z-index: 1;">
+                        <div class="img-bubble" ng-click="selectBubble(4)" ng-show="bundles[3]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

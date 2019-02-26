@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Demo";
+}
+<meta name="viewport" content="width=device-width">
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/angular/angular.min.js"></script>
+<script src="~/lib/angular-animate/angular-animate.min.js"></script>
+<script src="~/lib/angular-spinner/dist/angular-spinner.min.js"></script>
+<script src="~/lib/spin.js/spin.js"></script>
+<script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="~/js/pickerApp.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+<link href="~/lib/grd/src/grd.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+
+<style type="text/css">
+    #category {
+        width: 92.5%;
+        padding-left: 3.125%;
+        background-color: transparent;
+        border: none;
+    }
+
+        #category *:not(.btn), #category *:not(input), #category *:not(select) {
+            border: none;
+        }
+
+    .parent-panel > div > h4 > a > span {
+        font-size: 5vh;
+    }
+
+    #choice {
+        margin-right: 8.33%
+    }
+
+    #filters {
+        color: #0096d6;
+    }
+
+    .filter {
+        border-top: 1px solid #0096d6;
+        padding: 0.67em 0;
+    }
+
+        .filter ul {
+            list-style-type: none;
+        }
+
+    .product-sec {
+        padding: 2.5vh;
+    }
+
+        .product-sec tr > td {
+            width: 33.3%;
+        }
+
+    .product-holder {
+        padding: 1em;
+    }
+
+    .header {
+        margin-top: initial !important;
+    }
+</style>
+
+<html ng-app="pickerApp">
+<body class="container" ng-controller="pickerCtrl">
+    <uib-tabset active="activeTab" justified="true" style="border-color: #A7A9AC; padding-top:5em;">
+        <uib-tab index="0" heading="Bundles"><div ng-include="'/templates/bundleTabTemplate.html'"></div></uib-tab>
+        <uib-tab index="1" heading="Single Products"><div ng-include="'/templates/singleTabTemplate.html'"></div></uib-tab>
+    </uib-tabset>
+</body>
+</html>

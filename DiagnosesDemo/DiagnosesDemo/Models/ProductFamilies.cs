@@ -9,9 +9,6 @@ namespace DiagnosesDemo.Models
 {
     public class ProductFamilies
     {
-		[BsonElement("_id")]
-		public ObjectId Id { get; set; }
-
 		[BsonElement("name")]
 		public String Name { get; set; }
 

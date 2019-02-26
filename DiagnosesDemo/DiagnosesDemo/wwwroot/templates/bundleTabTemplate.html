@@ -1,0 +1,169 @@
+﻿<div id="header" class="header">
+    <uib-accordion>
+        <div uib-accordion-group id="category" class="parent-panel" heading="Bundle Search" is-open="bundle_acc_status.parent" style="padding-left: 6.25%; width: 100%; font-size: 5vh;">
+            <uib-accordion>
+                <div id="category" uib-accordion-group class="panel-default" heading="{{placehold.diagnosis}}" is-open="bundle_acc_status.first">
+                    <div id="diagnoses" class="Grid -left" style="flex-wrap: nowrap;">
+                        <div class="Cell -4of12" style="display: table;">
+                            <p class="subhead">Diagnosed Condition</p>
+                            <div class="input-group">
+                                <input list="info" class="form-control" ng-model="condition.current" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" style="border:1px solid #53565c; height: 34px; padding: 0 0.5em;" type="button" ng-click="addDiagnosis()">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <datalist id="info">
+                                <option ng-repeat="diagnosis in diagnoses track by $index" value="{{diagnosis.ICD10 + ' | ' + diagnosis.desc}}" />
+                            </datalist>
+                            <div style="padding: 1em 0 0 1.5em;">
+                                <ul class="cancel">
+                                    <li ng-repeat="chosen in diagnoses_chosen" style="color: white;" ng-click="removeCode(chosen)">{{chosen}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="Cell -3of12">
+                            <p class="subhead">Which Medicare Code do you qualify for?</p>
+                            <div class="select-group">
+                                <select size="5" class="form-control" ng-model="bundle_options.hcpcs" multiple>
+                                    <option ng-repeat="code in hcpcs" selected="selected">{{code}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="Cell -3of12">
+                            <p class="subhead">Back Size?</p>
+                            <button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Pediatric</button>
+                            <button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Bariatric</button>
+                            <button class="btn btn-dark" style="width: 100%; margin: 0.25em;">Adult Standard</button>
+                        </div>
+                        <div class="Cell -2of12" style="text-align: center;">
+                            <h1 style="width: 100%; color: #fff; margin-top: .33em">{{products.length}}</h1>
+                            <button class="btn btn-danger" ng-click="collapseHeader()">Products Found</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="category" uib-accordion-group class="panel-default" heading="{{(bundle_options.independance != '') ? bundle_options.independance : 'Can the patient weight shift independantly?'}}" is-open="bundle_acc_status.second">
+                    <div class="Grid -left">
+                        <button id="choice" type="button" class="btn-lg btn-dark Cell -4of12" ng-model="bundle_options.independance" uib-btn-radio="'-1'">No</button>
+                        <button id="choice" type="button" class="btn-lg btn-dark Cell -4of12" ng-model="bundle_options.independance" uib-btn-radio="'1'">Yes</button>
+                    </div>
+                </div>
+                <div id="category" uib-accordion-group class="panel-default" heading="{{(bundle_options.location != '') ? bundle_options.location : 'Where the is wheelchair most likely to be used?'}}" is-open="bundle_acc_status.third">
+                    <div class="Grid -left">
+                        <button id="choice" type="button" class="btn-lg btn-dark Cell -3of12" ng-model="bundle_options.location" uib-btn-radio="'-1'">Indoors</button>
+                        <button id="choice" type="button" class="btn-lg btn-dark Cell -3of12" ng-model="bundle_options.location" uib-btn-radio="'1'">Outdoors</button>
+                    </div>
+                </div>
+            </uib-accordion>
+            <div class="Grid -right" style="height: 2.167vh">
+                <button class="btn btn-link btn-lg Cell -1of12" style="color: #ffffff;">Reset</button>
+            </div>
+        </div>
+    </uib-accordion>
+</div>
+<div id="content" class="content Grid">
+    <div id="filters" class="Cell -2of12">
+        <p class="title">Refine Your Search</p>
+        <p style="padding-bottom: 0.67em;">83 Total Results</p>
+        <div class="filter" ng-show="bundle_options.hcpcs.length">
+            <p class="title">Medicare Code:</p>
+            <ul>
+                <li ng-repeat="code in bundle_options.hcpcs">
+                    <input id="{{code}}" type="checkbox" ng-model="hcpcs_filter[code]" />
+                    <label for="{{code}}"><span></span>{{code}}</label>
+                </li>
+            </ul>
+        </div>
+        <div class="filter" ng-show="bundle_options.prod_type == 'SEATCU'">
+            <p class="title">Padding Type:</p>
+            <ul>
+                <li>
+                    <input id="air" type="checkbox" ng-model="pad_filter.air" />
+                    <label for="air"><span></span>Air</label>
+                </li>
+                <li>
+                    <input id="foam" type="checkbox" ng-model="pad_filter.foam" />
+                    <label for="foam"><span></span>Foam</label>
+                </li>
+                <li>
+                    <input id="foam_gel" type="checkbox" ng-model="pad_filter.gel" />
+                    <label for="foam_gel"><span></span>Foam / Gel</label>
+                </li>
+            </ul>
+        </div>
+        <div class="filter">
+            <p class="title">Shape:</p>
+            <ul>
+                <li>
+                    <input id="linear" type="checkbox" ng-model="shape.linear" />
+                    <label for="linear"><span></span>Linear</label>
+                </li>
+                <li>
+                    <input id="contour" type="checkbox" ng-model="shape.contour" />
+                    <label for="contour"><span></span>Contoured</label>
+                </li>
+            </ul>
+        </div>
+        <div class="filter">
+            <p class="title">Cover:</p>
+            <ul>
+                <li>
+                    <input id="fluid_res" type="checkbox" ng-model="cover.fluid_res" />
+                    <label for="fluid_res"><span></span>Fluid Resistant</label>
+                </li>
+                <li>
+                    <input id="breath" type="checkbox" ng-model="cover.breath" />
+                    <label for="breath"><span></span>Breathable</label>
+                </li>
+                <li>
+                    <input id="anti_shear" type="checkbox" ng-model="cover.anti_shear" />
+                    <label for="anti_shear"><span></span>Anti-Shear</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="products" class="Cell -10of12">
+        <table class="product-sec" style="width:100%;">
+            <tr ng-repeat="bundle in curr_bundles = bundles.slice((currentPage-1)*pageSize, (currentPage)*pageSize)" ng-switch="$index % 2">
+                <td ng-switch-when="0">
+                    <div class="Grid -left" ng-show="curr_bundles[$index]">
+                        <div class="Cell -6of12" style="padding:2em;">
+                            <div style="background-color:lightgrey; width:100%; padding-bottom:100%; text-align:center; vertical-align:middle;">Placeholder Image</div>
+                        </div>
+                        <div class="Cell -4of12" style="padding:1em;">
+                            <div ng-repeat="product in bundle.products">
+                                <p>
+                                    <span style="font-weight:bold; font-size-adjust:1.15;">{{product.name}}</span>
+                                    <ul>
+                                        <li>{{product.desc}}</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td ng-switch-when="0">
+                    <div class="Grid -left" ng-show="curr_bundles[$index+1]">
+                        <div class="Cell -6of12" style="padding:2em;">
+                            <div style="background-color:lightgrey; width:100%; padding-bottom:100%; text-align:center; vertical-align:middle;">Placeholder Image</div>
+                        </div>
+                        <div class="Cell -4of12" style="padding:1em;">
+                            <div ng-repeat="product in bundle.products">
+                                <p>
+                                    <span style="font-weight:bold; font-size-adjust:1.15;">{{product.name}}</span>
+                                    <ul>
+                                        <li>{{product.desc}}</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="width: 100%; text-align: center;">
+            <uib-pagination total-items="products.length" ng-model="currentPage" items-per-page="pageSize" max-size="5" class="pagination-sm" boundary-link-numbers="true" rotate="false" />
+        </div>
+    </div>
+</div>
