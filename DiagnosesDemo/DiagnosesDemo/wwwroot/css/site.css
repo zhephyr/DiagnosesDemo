@@ -252,7 +252,7 @@ h1 *, h2 *, h3 *, .title *, .subhead * {
 
 h4, h5, h6, .caption,
 h4 *, h5 *, h6 *, .caption * {
-    font-family: neutratext-light !important;
+    font-family: neutratext-demi !important;
 }
 
 h1 {
@@ -272,7 +272,7 @@ h3 {
 
 h4 {
     font-size: 2.5vh !important;
-    margin-bottom: 1em;
+    margin-bottom: .25em;
 }
 
 span {

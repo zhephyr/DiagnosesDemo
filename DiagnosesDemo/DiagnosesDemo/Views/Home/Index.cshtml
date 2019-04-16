@@ -158,7 +158,10 @@
         }
 
     .img-bubble {
+        position: relative;
+        overflow: hidden;
         width: 75%;
+        background-color: #fff;
         padding-bottom: 75%;
         margin-left: 12.5%;
         border: .25em solid #002855;
@@ -174,6 +177,101 @@
             padding-bottom: 100%;
             margin: unset;
         }
+
+    .img {
+        z-index: 2;
+    }
+
+        .img.upper {
+            max-height: 50%;
+            position: absolute;
+            bottom: 50%;
+        }
+
+        .img.left {
+            max-width: 50%;
+            position: absolute;
+            right: 50%;
+        }
+
+        .img.right {
+            max-width: 50%;
+            position: absolute;
+            left: 50%;
+        }
+
+        .img.bottom {
+            max-height: 50%;
+            position: absolute;
+            top: 50%;
+        }
+
+        .img.centered {
+            position: absolute;
+            left: 25%;
+        }
+
+    .img-bubble.main > .img.upper.left:hover {
+        z-index: 3;
+        transition: 1s;
+        transform: translate(50%,50%) scale(2);
+    }
+
+    .img-bubble.main > .img.upper.right:hover {
+        z-index: 3;
+        transition: 1s;
+        transform: translate(-50%,50%) scale(2);
+    }
+
+    .img-bubble.main > .img.bottom:hover {
+        z-index: 3;
+        transition: 1s;
+        transform: translate(0,-50%) scale(2);
+    }
+
+    i.tilt {
+        height: 2em;
+        width: 4em;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666666), to(#666666), color-stop(.6,#333));
+        transform: skewX(30deg);
+        border-radius: .5em;
+        float: left;
+        margin-left: 13.5em;
+        margin-right: 1em;
+    }
+
+    i.recline {
+        height: 2em;
+        width: 4em;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF6600), to(#FF6600), color-stop(.6,#FFCC99));
+        transform: skewX(30deg);
+        border-radius: .5em;
+        float: left;
+        margin-left: 13.5em;
+        margin-right: 1em;
+    }
+
+    i.legs {
+        height: 2em;
+        width: 4em;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00FF00), to(#00FF00), color-stop(.6,#AAFFAA));
+        transform: skewX(30deg);
+        border-radius: .5em;
+        float: left;
+        margin-left: 13.5em;
+        margin-right: 1em;
+    }
+
+    i.elevation {
+        height: 2em;
+        width: 4em;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AA0066), to(#AA0066), color-stop(.6,#FF99FF));
+        transform: skewX(30deg);
+        border-radius: .5em;
+        float: left;
+        margin-left: 13.5em;
+        margin-right: 1em;
+    }
 </style>
 
 <html ng-app="sliderApp">
@@ -216,32 +314,76 @@
         </div>
     </div>
     <div class="slide">
-        <div id="banner3" class="banner-steel Grid -middle -center">
-            <div class="Cell -11of12">
-
-            </div>
+        <div id="banner3" class="banner-steel Grid -center" style="height:94.75vh;">
             <div class="Cell -11of12" style="position:relative;">
-                <div class="Grid -middle -center">
-                    <div style="width:100%; border:.25em solid #002855; border-radius:.25em; position:absolute; z-index: 0;"></div>
-                    <div class="Cell -2of12" style="z-index: 1;">
-                        <div class="img-bubble" ng-click="selectBubble(0)" ng-show="bundles[4]"></div>
+                <div style="width:100%; border:.25em solid #002855; border-radius:.25em; position:absolute; top:41%; z-index: 0;"></div>
+                <div class="Grid -middle -center" style="margin-top:4.166667em;">
+                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
+                        <div class="img-bubble" ng-click="selectBubble(4, 0)" ng-show="show_bundles[4]">
+                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[4].products[2].img_src}}" />
+                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[4].products[1].img_src}}" />
+                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[4].products[0].img_src}}" />
+                        </div>
+                        <h3>{{show_bundles[4].products[2].name}}/{{show_bundles[4].products[1].name}}/{{show_bundles[4].products[0].name}}</h3>
                     </div>
-                    <div class="Cell -2of12" style="z-index: 1;">
-                        <div class="img-bubble" ng-click="selectBubble(1)" ng-show="bundles[2]">{{bundle_answers}}</div>
+                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
+                        <div class="img-bubble" ng-click="selectBubble(2, 1)" ng-show="show_bundles[2]">
+                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[2].products[2].img_src}}" />
+                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[2].products[1].img_src}}" />
+                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[2].products[0].img_src}}" />
+                        </div>
+                        <h3>{{show_bundles[2].products[2].name}}/{{show_bundles[2].products[1].name}}/{{show_bundles[2].products[0].name}}</h3>
                     </div>
-                    <div class="Cell -4of12" style="z-index: 1;">
-                        <div class="img-bubble main" ng-click="selectBubble(2)" ng-show="bundles[0]">{{bundles}}</div>
+                    <div class="Cell -4of12" style="z-index: 1; text-align:center;">
+                        <div class="img-bubble main" ng-click="selectBubble(0, 2)" ng-show="show_bundles[0]">
+                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[0].products[2].img_src}}" />
+                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[0].products[1].img_src}}" />
+                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[0].products[0].img_src}}" />
+                        </div>
+                        <h3>{{show_bundles[0].products[2].name}}/{{show_bundles[0].products[1].name}}/{{show_bundles[0].products[0].name}}</h3>
+                        <br />
+                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('tilt')"><i class="tilt"></i><h4>Tilt</h4></div>
+                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('recline')"><i class="recline"></i><h4>Recline</h4></div>
+                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('legs')"><i class="legs"></i><h4>Power Legs</h4></div>
+                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('elevation')"><i class="elevation"></i><h4>Elevation & Standing</h4></div>
+                        <br />
                     </div>
-                    <div class="Cell -2of12" style="z-index: 1;">
-                        <div class="img-bubble" ng-click="selectBubble(3)" ng-show="bundles[1]"></div>
+                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
+                        <div class="img-bubble" ng-click="selectBubble(1, 3)" ng-show="show_bundles[1]">
+                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[1].products[2].img_src}}" />
+                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[1].products[1].img_src}}" />
+                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[1].products[0].img_src}}" />
+                        </div>
+                        <h3>{{show_bundles[1].products[2].name}}/{{show_bundles[1].products[1].name}}/{{show_bundles[1].products[0].name}}</h3>
                     </div>
-                    <div class="Cell -2of12" style="z-index: 1;">
-                        <div class="img-bubble" ng-click="selectBubble(4)" ng-show="bundles[3]"></div>
+                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
+                        <div class="img-bubble" ng-click="selectBubble(3, 4)" ng-show="show_bundles[3]">
+                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[3].products[2].img_src}}" />
+                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[3].products[1].img_src}}" />
+                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[3].products[0].img_src}}" />
+                        </div>
+                        <h3>{{show_bundles[3].products[2].name}}/{{show_bundles[3].products[1].name}}/{{show_bundles[3].products[0].name}}</h3>
+                    </div>
+                    <div class="Cell -12of12" style="text-align:center;">
+                        <button class="btn btn-primary" ng-click="gotoBanner(4)">Order Bundle</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="slide">
+        <div id="banner4" class="banner-prussian Grid -center" style="padding-top:4.166667em;">
+            <h1>Bundle Order Form</h1>
+            <div class="Cell -8of12">
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                    hbspt.forms.create({
+                        portalId: "1624307",
+                        formId: "25d71661-0925-4313-88c5-fa74665d0a83"
+                    });
+                </script>
+            </div>
+        </div>
     </div>
 </body>
 </html>
