@@ -1,100 +1,154 @@
 ﻿var app = angular.module('sliderApp', ['ngAnimate', 'ui.bootstrap']);
 
-app.controller('sliderApp', function ($scope, $location, $anchorScroll, $http) {
+app.controller('sliderCtrl', function ($scope, $location, $anchorScroll, $http) {
     $scope.gotoBanner = function (x) {
-        $('html, body').animate({
-            scrollTop: $("#banner" + x).offset().top
-        }, 1000);
+        setTimeout(function () {
+            $('html, body').animate({
+                scrollTop: $("#banner" + x).offset().top
+            }, 1000);
+        }, 0);
+
     };
 
-    $scope.questionUrls = ['/templates/bundleQuestion1.html', '/templates/bundleQuestion2.html'];
+    $scope.questionaireComplete = false;
+
+    $scope.questionUrls = [
+        { tile: 'X', url: '/templates/slides/X_weight_shift.html' },
+        { tile: '0Y', url: '/templates/slides/0Y_operate_power.html' },
+        { tile: '0X', url: '/templates/slides/0X_indoors_outdoors.html' },
+        { tile: '1X', url: '/templates/slides/1X_pivot_transfer.html' },
+        { tile: 'XXX', url: '/templates/slides/XXX_injuries.html' },
+        { tile: 'XXXX', url: '/templates/slides/XXXX_min_max.html' },
+        { tile: 'alt1', url: '/templates/slides/alt1_training_offer.html' }
+    ];
+
+    $scope.displayedSlides = ['X'];
 
     $scope.currTempIdx = 0;
 
-    $scope.bundle_answers = { weight_shift: 'init', outdoors: 'init' };
+    $scope.bundle_answers = new Array(4);
+
+    $scope.setOption = function (q, a) {
+        var idx = $scope.displayedSlides.indexOf(q);
+        var temp_answers = new Array(4);
+
+        var i = 0;
+        while ($scope.bundle_answers[i] != null && i < idx) {
+            temp_answers[i] = $scope.bundle_answers[i];
+            i++;
+        }
+        temp_answers[idx] = a;
+
+        $scope.bundle_answers = temp_answers;
+
+        $scope.displayedSlides = $scope.displayedSlides.slice(0, idx + 1);
+        $scope.addSlide();
+        $scope.nextSlide(idx);
+    };
+
+    $scope.addSlide = function () {
+        var code = $scope.bundle_answers.join('');
+
+        switch ($scope.displayedSlides.length) {
+            case 0:
+                $scope.displayedSlides.push('X');
+                break;
+            case 1:
+                if (code == '1') {
+                    $scope.displayedSlides.push('1X');
+                } else {
+                    $scope.displayedSlides.push('0Y');
+                    $scope.displayedSlides.push('0X');
+                }
+                break;
+            case 2:
+                $scope.displayedSlides.push('XXX');
+                break;
+            case 3:
+                $scope.displayedSlides.push('XXXX');
+                break;
+            case 4:
+                var int_code = parseInt($scope.bundle_answers.join(''), 2);
+                $scope.showBundle(int_code);
+                break;
+        }
+    };
+
+    $scope.setAltOption = function (tile, option) {
+        switch (tile) {
+            case '0Y':
+                $scope.displayedSlides.push('alt1');
+                break;
+            case 'alt1':
+                $scope.displayedSlides.push('alt2');
+                break;
+            case 'alt2':
+                $scope.showBundle(6);
+                break;
+        }
+    };
+
+    $scope.showBundle = function (code) {
+        $scope.bundle = $scope.bundles.find(function (bundle) {
+            return parseInt(bundle.id) === code;
+        });
+        $scope.bundle.products.forEach(function (prod) {
+            try {
+                prod.src = $scope.product_images_list.find(function (item) {
+                    return item.name === prod.name;
+                }).img_src;
+            } catch (ex) {
+                alert(prod.name);
+            }
+        });
+        $scope.questionaireComplete = true;
+        $scope.gotoBanner(3);
+    };
 
     $(function () {
-        for (var i = 1; i < $scope.questionUrls.length; i++) {
-            var width = $('[id="slide' + i + '"]').width();
-            $('[id="slide' + i + '"]').css({ left: "+=" + width });
+        $('.question').css({ left: "+=" + $('.question').width() });
+
+        for (var i = 0; i < $scope.displayedSlides.length; i++) {
+            for (var j = 0; j <= i; j++) {
+                $('[id="' + $scope.displayedSlides[j] + '"]').css({ left: "-=" + $('[id="' + $scope.displayedSlides[j] + '"]').width() });
+            }
         }
     });
 
     $scope.nextSlide = function (idx) {
-        if (idx === $scope.currTempIdx) {
+        if (idx === $scope.currTempIdx && idx < $scope.displayedSlides.length - 1) {
             var next = idx + 1;
             $scope.currTempIdx = next;
-            var width = $('[id="slide' + idx + '"]').width();
+            var width = $('[id="' + $scope.displayedSlides[idx] + '"]').width();
             var leftDist = "-=" + width;
-            var rightDist = "+=" + width;
 
-            $('[id="slide' + idx + '"]').animate({
+            $('[id="' + $scope.displayedSlides[idx] + '"]').animate({
                 opacity: 0,
                 left: leftDist
             }, 1000);
 
-            $('[id="slide' + next + '"]').animate({
+            $('[id="' + $scope.displayedSlides[next] + '"]').animate({
                 opacity: 1,
                 left: leftDist
             }, 1000);
-        };
+        }
     };
 
     $scope.prevSlide = function (idx) {
-        if (idx === $scope.currTempIdx) {
+        if (idx === $scope.currTempIdx && idx > 0) {
             var prev = idx - 1;
             $scope.currTempIdx = prev;
-            var width = $('[id="slide' + idx + '"]').width();
-            var leftDist = "-=" + width;
+            var width = $('[id="' + $scope.displayedSlides[idx] + '"]').width();
             var rightDist = "+=" + width;
 
-            $('[id="slide' + idx + '"]').animate({
+            $('[id="' + $scope.displayedSlides[idx] + '"]').animate({
                 opacity: 0,
                 left: rightDist
             }, 1000);
 
-            $('[id="slide' + prev + '"]').animate({
+            $('[id="' + $scope.displayedSlides[prev] + '"]').animate({
                 opacity: 1,
                 left: rightDist
-            }, 1000);
-        }
-    };
-
-    $scope.setWeightShift = function (inpt) {
-        if ($scope.bundle_answers.weight_shift === 'init') {
-            $scope.bundle_answers.weight_shift = inpt;
-            $scope.nextSlide(0);
-        }
-        else {
-            $scope.bundle_answers.weight_shift = inpt;
-        }
-    };
-
-    $scope.setOutdoor = function (inpt) {
-        if ($scope.bundle_answers.outdoors === 'init') {
-            $scope.bundle_answers.outdoors = inpt;
-            $scope.gotoBanner(3);
-        }
-        else {
-            $scope.bundle_answers.outdoors = inpt;
-        }
-    };
-
-    $scope.selectBubble = function (idx, pop) {
-        if (idx !== 0) {
-            var $element = $($('.img-bubble')[pop]);
-            var $main = $($('.img-bubble')[2]);
-
-            $element.css({ transform: "scale(0,0)" }).promise().done(function () {
-                $main.css({ transform: "scale(0,0)" }).promise().done(function () {
-                    [$scope.show_bundles[idx], $scope.show_bundles[0]] = [$scope.show_bundles[0], $scope.show_bundles[idx]];
-                });
-            });
-
-            setTimeout(function () {
-                $element.css({ transform: "scale(1,1)" }).promise().done(function () {
-                    $main.css({ transform: "scale(1,1)" });
-                });
             }, 1000);
         }
     };
@@ -106,81 +160,7 @@ app.controller('sliderApp', function ($scope, $location, $anchorScroll, $http) {
         });
     })();
 
-    $scope.$watch('bundle_answers.weight_shift', function (newVal, oldVal) {
-        if (newVal !== oldVal) {
-            $scope.bundles = full_bundle_list.slice();
-
-            if (newVal === 'yes') {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if ($scope.bundles[i].chair_func.includes("power")) {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            } else if (newVal === 'no') {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if (!$scope.bundles[i].chair_func.includes("power")) {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            }
-
-            if ($scope.bundle_answers.outdoors !== 'init') {
-                if ($scope.bundle_answers.outdoors) {
-                    for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                        if ($scope.bundles[i].indoor_outdoor === "indoor") {
-                            $scope.bundles.splice(i, 1);
-                        }
-                    }
-                } else if (!$scope.bundle_answers.outdoors) {
-                    for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                        if ($scope.bundles[i].indoor_outdoor === "outdoor") {
-                            $scope.bundles.splice(i, 1);
-                        }
-                    }
-                }
-            }
-
-            $scope.$digest();
-        }
-    }, true);
-
-    $scope.$watch('bundle_answers.outdoors', function (newVal, oldVal) {
-        if (newVal !== oldVal) {
-            $scope.bundles = full_bundle_list.slice();
-
-            if (newVal) {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if ($scope.bundles[i].indoor_outdoor === "indoor") {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            } else {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if ($scope.bundles[i].indoor_outdoor === "outdoor") {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            }
-
-            if ($scope.bundle_answers.weight_shift === 'yes') {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if ($scope.bundles[i].chair_func.includes("power")) {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            } else if (!$scope.bundle_answers.weight_shift === 'no') {
-                for (var i = $scope.bundles.length - 1; i >= 0; i--) {
-                    if (!$scope.bundles[i].chair_func.includes("power")) {
-                        $scope.bundles.splice(i, 1);
-                    }
-                }
-            }
-
-            $scope.$digest();
-        }
-    }, true);
-
-    var product_images_list = [
+    $scope.product_images_list = [
         { name: "Corpus Ergo Backrest", img_src: "Corpus Back & Seat Cushion.jpg" },
         { name: "Permobil F3 Power Wheelchair", img_src: "F3.png" },
         { name: "ROHO Quadtro Select High Profile Seat Cushion", img_src: "ROHO Quadtro Select_HP.jpg" },
@@ -191,24 +171,10 @@ app.controller('sliderApp', function ($scope, $location, $anchorScroll, $http) {
         { name: "Permobil M3 Power Wheelchair", img_src: "M3.png" },
         { name: "Permobil F5 VS Power Wheelchair", img_src: "F5VS.png" },
         { name: "Permobil M1 Power Wheelchair", img_src: "M1.png" },
-        { name: "ROHO Agility Min Countour Backrest W/ Air and Lumbar", img_src: "AG2 Back Angled LG.jpg" }
+        { name: "ROHO Agility Min Countour Backrest W/Air and Lumbar", img_src: "AG2 Back Angled LG.jpg" },
+        { name: "Aero X", img_src: "Aero X.jpg" },
+        { name: "Aero Z", img_src: "Aero Z.jpg" },
+        { name: "Aero T", img_src: "Aero T.jpg" }
+
     ];
-
-    $scope.$watch('bundles', function (newVal, oldVal) {
-        if (newVal) {
-            var show_bundles = newVal.slice(0, 5);
-            show_bundles.forEach(function (bundle) {
-                bundle.products.forEach(function (product) {
-                    product.img_src = product_images_list.find(function (element) {
-                        if (element.name == product.name) {
-                            return element;
-                        }
-                    }).img_src;
-                });
-            });
-
-            $scope.show_bundles = show_bundles;
-            $scope.$apply();
-        }
-    });
 });

@@ -275,7 +275,7 @@
 </style>
 
 <html ng-app="sliderApp">
-<body ng-controller="sliderApp">
+<body ng-controller="sliderCtrl">
     <div class="titlebar" style="z-index:3;">
         <img src="~/images/main_img/Permobil_BlueLogo_NoTag.png" style="margin:.5em 4.167em; height:2.5vh;" />
     </div>
@@ -292,8 +292,8 @@
             <div class="Cell -1of12"></div>
             <div class="Cell -2of12" style="padding-top:8.33em; text-align:center;">
                 <div uib-carousel active="active" interval="5000" style="height:45vh; width:min-content; margin-bottom:8.33em;">
-                    <div uib-slide ng-repeat="x in [].constructor(5) track by $index" index="$index">
-                        <img src="~/images/main_img/blank_slide.png" style="height:45vh;" />
+                    <div uib-slide ng-repeat="image in product_images_list track by $index" index="$index">
+                        <img src="~/images/main_img/{{image.img_src}}" style="height:45vh;" />
                         <div class="carousel-caption">
                             <p>Bundle #{{$index}}</p>
                         </div>
@@ -305,73 +305,35 @@
     </div>
     <div class="slide">
         <div class="banner-prussian Grid -center" id="banner2" style="position:relative;">
-            <div id="slide{{$index}}" class="Cell -10of12 question" style="position:absolute;" ng-repeat="url in questionUrls track by $index">
+            <div id="{{slide.tile}}" class="Cell -10of12 question" style="position:absolute;" ng-repeat="slide in questionUrls track by $index">
                 <div style="width:100%; margin-top:4.1666667em; border-bottom:2px solid white; text-align:center; vertical-align:middle;">
-                    <h2 style="color:white; font-style:italic;">{{$index + 1}}  <span style="font-family:neutratext-light !important;">of</span>  2</h2>
+                    <h2 style="color:white; font-style:italic;">{{1 + displayedSlides.indexOf(slide.tile)}}  <span style="font-family:neutratext-light !important;">of</span>  {{displayedSlides.length}}</h2>
                 </div>
-                <div ng-include="url"></div>
+                <div ng-include="slide.url"></div>
             </div>
         </div>
     </div>
-    <div class="slide">
+    <div class="slide" ng-show="questionaireComplete">
         <div id="banner3" class="banner-steel Grid -center" style="height:94.75vh;">
             <div class="Cell -11of12" style="position:relative;">
                 <div style="width:100%; border:.25em solid #002855; border-radius:.25em; position:absolute; top:41%; z-index: 0;"></div>
                 <div class="Grid -middle -center" style="margin-top:4.166667em;">
-                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
-                        <div class="img-bubble" ng-click="selectBubble(4, 0)" ng-show="show_bundles[4]">
-                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[4].products[2].img_src}}" />
-                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[4].products[1].img_src}}" />
-                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[4].products[0].img_src}}" />
-                        </div>
-                        <h3>{{show_bundles[4].products[2].name}}/{{show_bundles[4].products[1].name}}/{{show_bundles[4].products[0].name}}</h3>
-                    </div>
-                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
-                        <div class="img-bubble" ng-click="selectBubble(2, 1)" ng-show="show_bundles[2]">
-                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[2].products[2].img_src}}" />
-                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[2].products[1].img_src}}" />
-                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[2].products[0].img_src}}" />
-                        </div>
-                        <h3>{{show_bundles[2].products[2].name}}/{{show_bundles[2].products[1].name}}/{{show_bundles[2].products[0].name}}</h3>
-                    </div>
                     <div class="Cell -4of12" style="z-index: 1; text-align:center;">
-                        <div class="img-bubble main" ng-click="selectBubble(0, 2)" ng-show="show_bundles[0]">
-                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[0].products[2].img_src}}" />
-                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[0].products[1].img_src}}" />
-                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[0].products[0].img_src}}" />
+                        <div class="img-bubble main" style="padding-bottom:0;" ng-show="bundle">
+                            <img class="img" src="~/images/main_img/{{bundle.products[0].src}}" style="max-width:50em;" />
                         </div>
-                        <h3>{{show_bundles[0].products[2].name}}/{{show_bundles[0].products[1].name}}/{{show_bundles[0].products[0].name}}</h3>
                         <br />
-                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('tilt')"><i class="tilt"></i><h4>Tilt</h4></div>
-                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('recline')"><i class="recline"></i><h4>Recline</h4></div>
-                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('legs')"><i class="legs"></i><h4>Power Legs</h4></div>
-                        <div style="text-align:left" ng-show="show_bundles[0].chair_func.includes('elevation')"><i class="elevation"></i><h4>Elevation & Standing</h4></div>
+                        <h2>{{bundle.products[0].name}}</h2>
                         <br />
-                    </div>
-                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
-                        <div class="img-bubble" ng-click="selectBubble(1, 3)" ng-show="show_bundles[1]">
-                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[1].products[2].img_src}}" />
-                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[1].products[1].img_src}}" />
-                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[1].products[0].img_src}}" />
-                        </div>
-                        <h3>{{show_bundles[1].products[2].name}}/{{show_bundles[1].products[1].name}}/{{show_bundles[1].products[0].name}}</h3>
-                    </div>
-                    <div class="Cell -2of12" style="z-index: 1; text-align:center;">
-                        <div class="img-bubble" ng-click="selectBubble(3, 4)" ng-show="show_bundles[3]">
-                            <img class="img upper left" ng-src="/images/main_img/{{show_bundles[3].products[2].img_src}}" />
-                            <img class="img upper right" ng-src="/images/main_img/{{show_bundles[3].products[1].img_src}}" />
-                            <img class="img bottom centered" ng-src="/images/main_img/{{show_bundles[3].products[0].img_src}}" />
-                        </div>
-                        <h3>{{show_bundles[3].products[2].name}}/{{show_bundles[3].products[1].name}}/{{show_bundles[3].products[0].name}}</h3>
-                    </div>
-                    <div class="Cell -12of12" style="text-align:center;">
-                        <button class="btn btn-primary" ng-click="gotoBanner(4)">Order Bundle</button>
+                        <h3 ng-show="bundle.chair_func.includes('power legs')" style="text-align:left;"><i class="legs"></i>Power Legs</h3>
+                        <h3 ng-show="bundle.chair_func.includes('tilt')" style="text-align:left;"><i class="tilt"></i>Power Tilt</h3>
+                        <h3 ng-show="bundle.chair_func.includes('recline')" style="text-align:left;"><i class="recline"></i>Power Recline</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="slide">
+    <div class="slide" ng-show="questionaireComplete">
         <div id="banner4" class="banner-prussian Grid -center" style="padding-top:4.166667em;">
             <h1>Bundle Order Form</h1>
             <div class="Cell -8of12">

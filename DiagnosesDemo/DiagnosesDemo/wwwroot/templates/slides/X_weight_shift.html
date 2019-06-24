@@ -1,0 +1,18 @@
+﻿<div class="Grid -center">
+    <div class="Cell -1of12"><br/></div>
+    <div class="Cell -10of12 Grid -center">
+        <div class="Cell -12of12" style="margin-top:8.333333em; padding-bottom:calc(100em * 1 / 24); text-align:center;">
+            <h2 style="color:white;">Does your client have the strength/endurance to self propel and perform a weight shift in a manual wheelchair?</h2>
+            <p style="color:white;">Please choose one:</p>
+        </div>
+        <div class="Cell -6of12" style="text-align:center;">
+            <input type="button" class="btn-big btn-default btn-cornered" ng-class="{selected: bundle_answers[0] === 1}" value="Yes" style="min-width:5em;" ng-click="setOption(slide.tile,1)" />
+        </div>
+        <div class="Cell -6of12" style="text-align:center;">
+            <input type="button" class="btn-big btn-default btn-cornered" ng-class="{selected: bundle_answers[0] === 0}" value="No" style="min-width:5em;" ng-click="setOption(slide.tile,0)" />
+        </div>
+    </div>
+    <div class="Cell -1of12 chev-long fwd" ng-click="nextSlide(displayedSlides.indexOf(slide.tile))" ng-show="bundle_answers[0] != null">
+        <i class="fa fa-chevron-right" aria-hidden="true" />
+    </div>
+</div>
